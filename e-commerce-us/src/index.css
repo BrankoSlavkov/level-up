@@ -2,6 +2,10 @@
 
 :root {
   --font-inter: 'Inter', sans-serif;
+
+  /* COLORS */
+  --spinner-gray: rgba(0, 0, 0, 0.1);
+  --very-dark-gray: #212529;
 }
 
 *,
