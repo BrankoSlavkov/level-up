@@ -1,8 +1,33 @@
 .header__container {
   height: 120px;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.select__sort {
+  align-self: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.select__sort select {
+  outline: none;
+  max-width: 100px;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 0;
+  border: 1px solid var(--dark-gray);
+  box-shadow: var(--shadow-light);
+}
+
+.select__sort option,
+.select__sort select {
+  cursor: pointer;
+  font-family: var(--font-inter);
+  font-size: 15px;
 }
 
 .btn__product--add {
@@ -24,4 +49,8 @@
 
 .btn__product--add:hover {
   color: var(--dark-gray);
+}
+
+.button__container {
+  justify-self: end;
 }

@@ -14,3 +14,5 @@ export type ProductState<T> = {
   error: string | null;
   products: T[];
 };
+
+export type ProductsSortBy = 'price' | 'name';

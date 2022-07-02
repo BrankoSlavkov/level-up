@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { sortByName, sortByPrice } from '../../helpers/sort';
 
 import { fetchProducts } from './productAction';
-import { Product, ProductState } from './productTypes';
+import { Product, ProductState, ProductsSortBy } from './productTypes';
 
 const initialState: ProductState<Product> = {
   isLoading: false,
@@ -12,7 +13,21 @@ const initialState: ProductState<Product> = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    sortProducts(state, { payload }: PayloadAction<ProductsSortBy>) {
+      const { products } = state;
+
+      switch (payload) {
+        case 'price':
+          state.products = sortByPrice(products);
+          break;
+
+        case 'name':
+        default:
+          state.products = sortByName(products);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -28,5 +43,7 @@ export const productSlice = createSlice({
       });
   },
 });
+
+export const { sortProducts } = productSlice.actions;
 
 export default productSlice.reducer;
