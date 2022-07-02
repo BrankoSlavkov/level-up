@@ -6,6 +6,7 @@ import { useAppDispatch } from '../store/hooks';
 import { ProductsList } from '../components/productsList/ProductsList';
 
 import styles from './product.module.css';
+import { Header } from '../components/header/Header';
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ export const Products = () => {
 
   return (
     <main className={styles.main__container}>
+      <Header />
       <div className={styles.products__container}>
         <ProductsList />
         <div className={styles.product__details}>

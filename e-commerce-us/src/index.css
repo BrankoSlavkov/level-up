@@ -6,6 +6,10 @@
   /* COLORS */
   --spinner-gray: rgba(0, 0, 0, 0.1);
   --very-dark-gray: #212529;
+  --dark-gray: #495057;
+  --almost-black: rgb(17 24 39);
+
+  /* SHADOWS */
   --shadow-light: 0 1rem 3rem rgba(0, 0, 0, 0.06);
 }
 
@@ -24,4 +28,12 @@ body {
 
 button {
   cursor: pointer;
+}
+
+.h-6 {
+  height: 60px;
+}
+
+.w-6 {
+  width: 60px;
 }

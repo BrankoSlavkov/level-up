@@ -5,6 +5,7 @@
   font-family: var(--font-inter);
   box-shadow: var(--shadow-light);
   cursor: pointer;
+  color: var(--almost-black);
 }
 
 .product__details {
@@ -16,4 +17,5 @@
 .product__price {
   display: block;
   text-align: right;
+  color: var(--almost-black);
 }

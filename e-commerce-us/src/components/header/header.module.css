@@ -1,0 +1,27 @@
+.header__container {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn__product--add {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-right: 10px;
+  font-family: var(--font-inter);
+  font-size: 16px;
+  color: var(--very-dark-gray);
+}
+
+.btn__product--add svg {
+  color: inherit;
+}
+
+.btn__product--add:hover {
+  color: var(--dark-gray);
+}
