@@ -43,3 +43,10 @@ button {
 .w-6 {
   width: 60px;
 }
+
+.error {
+  color: var(--red);
+  font-size: 14px;
+  font-family: var(--font-inter);
+  padding: 2px 0;
+}

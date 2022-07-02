@@ -6,7 +6,6 @@
 }
 
 .loader {
-  margin: auto;
   position: relative;
   border: 0.5rem solid var(--spinner-gray);
   border-right: 0.5rem solid var(--spinner-gray);
@@ -39,4 +38,16 @@
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.loader.sm {
+  height: 2rem;
+  width: 2rem;
+  border-width: 0.2rem;
+}
+
+.loader.lg {
+  height: 5rem;
+  width: 5rem;
+  border-width: 0.7rem;
 }

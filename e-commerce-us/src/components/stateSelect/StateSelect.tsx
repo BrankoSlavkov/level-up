@@ -1,8 +1,6 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import { useAppDispatch } from '../../store/hooks';
-import { fetchStates } from '../../store/state/stateAction';
 import { State } from '../../store/state/stateTypes';
 
 import styles from '../categorySelect/select.module.css';
@@ -13,12 +11,6 @@ type StateSelectProps = {
 };
 
 export const StateSelect: FC<StateSelectProps> = ({ register, states }) => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchStates());
-  }, [dispatch]);
-
   return (
     <select {...register} className={styles.select}>
       {states?.map(({ id, name }) => (

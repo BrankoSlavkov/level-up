@@ -1,9 +1,11 @@
 import { FC, useEffect } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
+
 import { fetchCategories } from '../../store/category/categoryAction';
 import { getCategories } from '../../store/category/categorySelector';
-
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
+import { Spinner } from '../spinner/Spinner';
 
 import styles from './select.module.css';
 
@@ -18,6 +20,14 @@ export const CategorySelect: FC<CategorySelectProps> = ({ register }) => {
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
+
+  if (isLoading) {
+    return <Spinner size="sm" />;
+  }
+
+  if (error) {
+    return <span className="error">{error}</span>;
+  }
 
   return (
     <select {...register} className={styles.select}>

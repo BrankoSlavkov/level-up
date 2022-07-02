@@ -1,19 +1,21 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string, number, SchemaOf } from 'yup';
+import { object, string, number } from 'yup';
 
 import { ProductFormData } from '../../store/product/productTypes';
-
-import { IMAGE_URL_REGEX } from '../../helpers/regexConstants';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getStates } from '../../store/state/stateSelector';
 import { postProduct } from '../../store/product/productAction';
+import { State } from '../../store/state/stateTypes';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { fetchStates } from '../../store/state/stateAction';
+
+import { StateSelect } from '../stateSelect/StateSelect';
+import { IMAGE_URL_REGEX } from '../../helpers/regexConstants';
+import { CategorySelect } from '../categorySelect/CategorySelect';
+import { Spinner } from '../spinner/Spinner';
 
 import styles from './productForm.module.css';
-import { StateSelect } from '../stateSelect/StateSelect';
-import { getStates } from '../../store/state/stateSelector';
-import { CategorySelect } from '../categorySelect/CategorySelect';
-import { State } from '../../store/state/stateTypes';
 
 type ProductFormProps = {
   closeModalHandler: () => void;
@@ -30,8 +32,6 @@ const defaultValues: ProductFormData = {
 
 export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
   const { states, isLoading, error } = useAppSelector(getStates);
-
-  // const schema: SchemaOf<ProductFormData> = ;
 
   const dispatch = useAppDispatch();
   const {
@@ -62,39 +62,55 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
               return Boolean((0.25 <= state.tax && value > 6) || (state.tax < 0.25 && value > 3));
             }),
           description: string().required('Description is required'),
-          categoryId: number().required(),
-          stateId: number().required(),
+          categoryId: number(),
+          stateId: number(),
         })
         .required(),
     ),
   });
+
+  useEffect(() => {
+    dispatch(fetchStates());
+  }, [dispatch]);
 
   const submitHandler = (data: ProductFormData) => {
     dispatch(postProduct(data));
     closeModalHandler();
   };
 
+  const stateSelectOrLoading = isLoading ? (
+    <Spinner size="sm" />
+  ) : (
+    <StateSelect register={register('stateId', { valueAsNumber: true })} states={states} />
+  );
+
+  const stateSelectOrError = error ? <span className="error">{error}</span> : stateSelectOrLoading;
+
+  if (error) {
+    return <span className="error">{error}</span>;
+  }
+
   return (
     <>
       <h2 className={styles.title}>Create Product</h2>
       <form onSubmit={handleSubmit(submitHandler)} className={styles.product__form}>
         <div className={styles.select__container}>
-          <StateSelect register={register('stateId', { valueAsNumber: true })} states={states} />
+          {stateSelectOrError}
           <CategorySelect register={register('categoryId', { valueAsNumber: true })} />
         </div>
         <div className={styles.horizontal__group}>
           <input type="text" {...register('title')} placeholder="Title" />
           <input type="number" {...register('price', { valueAsNumber: true })} placeholder="Price" min={0} />
-          {errors.title && <span className={styles.error}>{errors.title.message}</span>}
-          {errors.price && <span className={styles.error}>{errors.price.message}</span>}
+          {errors.title && <span className="error">{errors.title.message}</span>}
+          {errors.price && <span className="error">{errors.price.message}</span>}
         </div>
         <div className={styles.form__group}>
           <input type="text" {...register('picture')} placeholder="Image url" />
-          {errors.picture && <span className={styles.error}>{errors.picture.message}</span>}
+          {errors.picture && <span className="error">{errors.picture.message}</span>}
         </div>
         <div className={styles.form__group}>
           <textarea {...register('description')} placeholder="Description" />
-          {errors.description && <span className={styles.error}>{errors.description.message}</span>}
+          {errors.description && <span className="error">{errors.description.message}</span>}
         </div>
 
         <div className={styles.controls}>

@@ -81,17 +81,10 @@
   font-size: 24px;
 }
 
-.error {
-  color: var(--red);
-  font-family: var(--font-inter);
-  font-size: 14px;
-}
-
 .select__container {
   display: flex;
   align-items: center;
-  justify-content: stretch;
-  width: 100%;
+  justify-content: flex-start;
   gap: 10px;
 }
 
