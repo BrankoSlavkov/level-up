@@ -32,11 +32,11 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
 
   const schema: SchemaOf<ProductFormData> = object()
     .shape({
-      title: string().required('Title is required'),
+      title: string().required('Title is required').min(4, 'Title should contain 4 characters'),
       picture: string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
       price: number()
         .required('Price is required')
-        .min(0.01, 'Price must be greater than 0')
+        .min(4, 'Price must be greater than 3')
         .test('Price must be greater than 6', 'price must be greater than 6', (value) => {
           if (!value) {
             return false;
