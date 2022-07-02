@@ -5,9 +5,11 @@ import { fetchProducts } from '../store/product/productAction';
 import { useAppDispatch } from '../store/hooks';
 import { ProductsList } from '../components/productsList/ProductsList';
 
-import styles from './product.module.css';
 import { Header } from '../components/header/Header';
 import { Modal } from '../components/modal/Modal';
+import { ProductForm } from '../components/productForm/ProductForm';
+
+import styles from './product.module.css';
 
 export const Products = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +33,7 @@ export const Products = () => {
       </div>
       {showModal && (
         <Modal closeHandler={closeModalHandler}>
-          <div>rasjndmalks';dsa</div>
+          <ProductForm closeModalHandler={closeModalHandler} />
         </Modal>
       )}
     </main>

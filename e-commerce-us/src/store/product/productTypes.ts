@@ -16,3 +16,5 @@ export type ProductState<T> = {
 };
 
 export type ProductsSortBy = 'price' | 'name';
+
+export type ProductFormData = Omit<Product, 'id' | 'stock'>;

@@ -13,6 +13,7 @@
   height: 100%;
   width: 100%;
   border: 1px solid var(--very-dark-gray);
+  overflow: hidden;
 }
 
 .product__details {

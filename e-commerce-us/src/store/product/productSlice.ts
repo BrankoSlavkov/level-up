@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { sortByName, sortByPrice } from '../../helpers/sort';
 
-import { fetchProducts } from './productAction';
-import { Product, ProductState, ProductsSortBy } from './productTypes';
+import { fetchProducts, postProduct } from './productAction';
+import { Product, ProductState, ProductsSortBy, ProductFormData } from './productTypes';
 
 const initialState: ProductState<Product> = {
   isLoading: false,
@@ -38,6 +38,20 @@ export const productSlice = createSlice({
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state) => {
+        state.isLoading = false;
+        state.error = 'Error fetching data';
+      })
+      .addCase(postProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(postProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.products.push({
+          ...action.payload,
+          id: state.products.length + 1,
+        });
+      })
+      .addCase(postProduct.rejected, (state) => {
         state.isLoading = false;
         state.error = 'Error fetching data';
       });

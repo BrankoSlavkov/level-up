@@ -17,16 +17,19 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = ({ children, closeHandle
   }
 
   return createPortal(
-    <div className={styles.backdrop} onClick={closeHandler}>
-      <div className={styles.modal}>
-        <div className={styles.close}>
-          <button onClick={closeHandler}>
-            <Close className={`${styles['h-2']} ${styles['w-2']}`} />
-          </button>
+    <>
+      <div className={styles.backdrop} onClick={closeHandler} />
+      <div className={styles.modal__wrapper}>
+        <div className={styles.modal}>
+          <div className={styles.close}>
+            <button onClick={closeHandler}>
+              <Close className={`${styles['h-2']} ${styles['w-2']}`} />
+            </button>
+          </div>
+          {children}
         </div>
-        {children}
       </div>
-    </div>,
+    </>,
     portalRoot,
   );
 };
