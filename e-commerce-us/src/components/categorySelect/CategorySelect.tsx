@@ -5,6 +5,8 @@ import { getCategories } from '../../store/category/categorySelector';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
+import styles from './select.module.css';
+
 type CategorySelectProps = {
   register: UseFormRegisterReturn<'categoryId'>;
 };
@@ -18,7 +20,7 @@ export const CategorySelect: FC<CategorySelectProps> = ({ register }) => {
   }, [dispatch]);
 
   return (
-    <select {...register}>
+    <select {...register} className={styles.select}>
       {categories?.map(({ id, name }) => (
         <option key={id} value={id}>
           {name}

@@ -57,7 +57,7 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
     <>
       <h2 className={styles.title}>Create Product</h2>
       <form onSubmit={handleSubmit(submitHandler)} className={styles.product__form}>
-        <div>
+        <div className={styles.select__container}>
           <StateSelect register={register('stateId')} states={states} />
           <CategorySelect register={register('categoryId')} />
         </div>

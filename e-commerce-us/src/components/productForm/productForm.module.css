@@ -86,3 +86,16 @@
   font-family: var(--font-inter);
   font-size: 14px;
 }
+
+.select__container {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  width: 100%;
+  gap: 10px;
+}
+
+.select__container select {
+  border-radius: 6px;
+  border: 1px solid var(--light-gray);
+}
