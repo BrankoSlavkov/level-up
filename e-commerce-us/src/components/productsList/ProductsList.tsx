@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../store/hooks';
 
 import { getProducts } from '../../store/product/productSelector';
 import { ProductItem } from '../productItem/ProductItem';
@@ -7,7 +7,7 @@ import { ProductItem } from '../productItem/ProductItem';
 import styles from './productList.module.css';
 
 export const ProductsList = memo(() => {
-  const { isLoading, error, products } = useSelector(getProducts);
+  const { isLoading, error, products } = useAppSelector(getProducts);
 
   return (
     <div className={styles['product__list-container']}>

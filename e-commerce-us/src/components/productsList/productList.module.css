@@ -4,6 +4,6 @@
   flex-direction: column;
   gap: 5px;
   border-right: 1px solid var(--very-dark-gray);
-  padding: 0 5px;
+  padding: 5px;
   overflow-y: auto;
 }

@@ -15,11 +15,13 @@ export const Products = () => {
   }, [dispatch]);
 
   return (
-    <div className={styles.products__container}>
-      <ProductsList />
-      <div>
-        <Outlet />
+    <main className={styles.main__container}>
+      <div className={styles.products__container}>
+        <ProductsList />
+        <div className={styles.product__details}>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };

@@ -1,7 +1,17 @@
-.products__container {
+.main__container {
   height: 100vh;
   width: 100vw;
+  padding: 30px;
+}
+
+.products__container {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  padding: 30px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var(--very-dark-gray);
+}
+
+.product__details {
+  padding: 40px;
 }
