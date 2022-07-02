@@ -1,0 +1,7 @@
+.products__container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  padding: 30px;
+}

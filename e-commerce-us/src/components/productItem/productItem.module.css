@@ -1,0 +1,19 @@
+.product__card {
+  border: 1px solid var(--very-dark-gray);
+  padding: 10px;
+  font-size: 16px;
+  font-family: var(--font-inter);
+  box-shadow: var(--shadow-light);
+  cursor: pointer;
+}
+
+.product__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product__price {
+  display: block;
+  text-align: right;
+}

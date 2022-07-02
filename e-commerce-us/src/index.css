@@ -6,6 +6,7 @@
   /* COLORS */
   --spinner-gray: rgba(0, 0, 0, 0.1);
   --very-dark-gray: #212529;
+  --shadow-light: 0 1rem 3rem rgba(0, 0, 0, 0.06);
 }
 
 *,
