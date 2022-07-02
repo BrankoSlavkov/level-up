@@ -12,13 +12,18 @@ type ProductItemProps = {
 export const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const navigate = useNavigate();
 
+  const productAvailable = product.stock ? (
+    <span className={styles.available}>available</span>
+  ) : (
+    <span className={styles.unavailable}>unavailable</span>
+  );
+
   return (
     <div className={styles.product__card} onClick={() => navigate(`/products/${product.id}`)}>
       <div className={styles.product__details}>
         <span>{product.id}</span>
         <span>{product.title}</span>
-        <span>{product.stock}</span>
-        {/* FIXME - stock*/}
+        {productAvailable}
       </div>
       <span className={styles.product__price}>${product.price}</span>
     </div>

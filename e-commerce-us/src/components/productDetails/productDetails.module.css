@@ -33,7 +33,19 @@
 }
 
 .product__price {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.available {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.unavailable {
+  color: var(--red);
+  font-weight: 600;
 }
 
 .product__details--text {

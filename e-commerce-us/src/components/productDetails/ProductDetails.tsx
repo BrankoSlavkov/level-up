@@ -18,6 +18,12 @@ export const ProductDetails = () => {
     return null;
   }
 
+  const productAvailable = product.stock ? (
+    <span className={styles.available}>available</span>
+  ) : (
+    <span className={styles.unavailable}>unavailable</span>
+  );
+
   return (
     <div className={styles['product__details--container']}>
       <div className={styles.product__header}>
@@ -25,7 +31,8 @@ export const ProductDetails = () => {
           {product.id} - {product.title}
         </div>
         <div className={styles.product__price}>
-          {product.stock} {product.price}
+          {productAvailable}
+          <span>${product.price}</span>
         </div>
       </div>
       <div className={styles.img__container}>

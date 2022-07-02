@@ -19,3 +19,13 @@
   text-align: right;
   color: var(--almost-black);
 }
+
+.available {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.unavailable {
+  color: var(--red);
+  font-weight: 600;
+}

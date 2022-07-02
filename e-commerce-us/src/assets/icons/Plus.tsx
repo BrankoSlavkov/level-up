@@ -1,9 +1,10 @@
 import { FC } from 'react';
 
-export type PlusIconProps = {
+export type IconProps = {
   className?: string;
 };
-export const Plus: FC<PlusIconProps> = ({ className = 'h-6 w-6' }) => {
+
+export const Plus: FC<IconProps> = ({ className = 'h-6 w-6' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
