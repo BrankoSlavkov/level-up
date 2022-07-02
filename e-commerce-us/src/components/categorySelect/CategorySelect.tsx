@@ -1,0 +1,29 @@
+import { FC, useEffect } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { fetchCategories } from '../../store/category/categoryAction';
+import { getCategories } from '../../store/category/categorySelector';
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
+type CategorySelectProps = {
+  register: UseFormRegisterReturn<'categoryId'>;
+};
+
+export const CategorySelect: FC<CategorySelectProps> = ({ register }) => {
+  const dispatch = useAppDispatch();
+  const { categories, isLoading, error } = useAppSelector(getCategories);
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
+  return (
+    <select {...register}>
+      {categories?.map(({ id, name }) => (
+        <option key={id} value={id}>
+          {name}
+        </option>
+      ))}
+    </select>
+  );
+};

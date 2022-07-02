@@ -1,1 +1,1 @@
-export const IMAGE_URL = /(https?:\/\/.*\.(?:png|jpg))/;
+export const IMAGE_URL_REGEX = /(https?:\/\/.*\.(?:png|jpg))/;
