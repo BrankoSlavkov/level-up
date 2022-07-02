@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { object, string, number, SchemaOf } from 'yup';
 
 import { ProductFormData } from '../../store/product/productTypes';
 
@@ -27,26 +27,42 @@ const defaultValues: ProductFormData = {
   stateId: 1,
 };
 
-const schema = yup
-  .object()
-  .shape({
-    title: yup.string().required('Title is required'),
-    picture: yup.string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
-    price: yup.number().required('Price is required').min(0.01, 'Price must be greater than 0'),
-    description: yup.string().required('Description is required'),
-    categoryId: yup.number().required(),
-    stateId: yup.number().required(),
-  })
-  .required();
-
 export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
+  const { states, isLoading, error } = useAppSelector(getStates);
+
+  const schema: SchemaOf<ProductFormData> = object()
+    .shape({
+      title: string().required('Title is required'),
+      picture: string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
+      price: number()
+        .required('Price is required')
+        .min(0.01, 'Price must be greater than 0')
+        .test('Price must be greater than 6', 'price must be greater than 6', (value) => {
+          if (!value) {
+            return false;
+          }
+
+          const state = states.find((state) => state.id === stateId);
+          if (!state) {
+            return false;
+          }
+
+          return Boolean(0.25 <= state.tax && value > 6);
+        }),
+      description: string().required('Description is required'),
+      categoryId: number().required(),
+      stateId: number().required(),
+    })
+    .required();
+
   const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<ProductFormData>({ defaultValues, resolver: yupResolver(schema) });
-  const { states, isLoading, error } = useAppSelector(getStates);
+  const stateId = watch('stateId');
 
   const submitHandler = (data: ProductFormData) => {
     dispatch(postProduct(data));
@@ -58,12 +74,12 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
       <h2 className={styles.title}>Create Product</h2>
       <form onSubmit={handleSubmit(submitHandler)} className={styles.product__form}>
         <div className={styles.select__container}>
-          <StateSelect register={register('stateId')} states={states} />
-          <CategorySelect register={register('categoryId')} />
+          <StateSelect register={register('stateId', { valueAsNumber: true })} states={states} />
+          <CategorySelect register={register('categoryId', { valueAsNumber: true })} />
         </div>
         <div className={styles.horizontal__group}>
           <input type="text" {...register('title')} placeholder="Title" />
-          <input type="number" {...register('price')} placeholder="Price" min={0} />
+          <input type="number" {...register('price', { valueAsNumber: true })} placeholder="Price" min={0} />
           {errors.title && <span className={styles.error}>{errors.title.message}</span>}
           {errors.price && <span className={styles.error}>{errors.price.message}</span>}
         </div>
