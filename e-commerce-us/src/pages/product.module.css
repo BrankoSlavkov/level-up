@@ -1,0 +1,21 @@
+.main__container {
+  height: 100vh;
+  width: 100vw;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.products__container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  height: 100%;
+  width: 100%;
+  border: 1px solid var(--very-dark-gray);
+  overflow: hidden;
+}
+
+.product__details {
+  padding: 40px;
+}
