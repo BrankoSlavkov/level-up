@@ -13,6 +13,7 @@ import styles from './productForm.module.css';
 import { StateSelect } from '../stateSelect/StateSelect';
 import { getStates } from '../../store/state/stateSelector';
 import { CategorySelect } from '../categorySelect/CategorySelect';
+import { State } from '../../store/state/stateTypes';
 
 type ProductFormProps = {
   closeModalHandler: () => void;
@@ -30,30 +31,7 @@ const defaultValues: ProductFormData = {
 export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
   const { states, isLoading, error } = useAppSelector(getStates);
 
-  const schema: SchemaOf<ProductFormData> = object()
-    .shape({
-      title: string().required('Title is required').min(4, 'Title should contain 4 characters'),
-      picture: string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
-      price: number()
-        .required('Price is required')
-        .min(4, 'Price must be greater than 3')
-        .test('Price must be greater than 6', 'price must be greater than 6', (value) => {
-          if (!value) {
-            return false;
-          }
-
-          const state = states.find((state) => state.id === stateId);
-          if (!state) {
-            return false;
-          }
-
-          return Boolean(0.25 <= state.tax && value > 6);
-        }),
-      description: string().required('Description is required'),
-      categoryId: number().required(),
-      stateId: number().required(),
-    })
-    .required();
+  // const schema: SchemaOf<ProductFormData> = ;
 
   const dispatch = useAppDispatch();
   const {
@@ -61,8 +39,35 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<ProductFormData>({ defaultValues, resolver: yupResolver(schema) });
-  const stateId = watch('stateId');
+  } = useForm<ProductFormData>({
+    defaultValues,
+    resolver: yupResolver(
+      object()
+        .shape({
+          title: string().required('Title is required').min(4, 'Title should contain 4 characters'),
+          picture: string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
+          price: number()
+            .required('Price is required')
+            .min(4, 'Price must be greater than 3')
+            .test('Price must be greater than 6', 'price must be greater than 6', (value) => {
+              if (!value) {
+                return false;
+              }
+
+              const state: State | undefined = states.find((state) => state.id === watch('stateId'));
+              if (!state) {
+                return false;
+              }
+
+              return Boolean((0.25 <= state.tax && value > 6) || (state.tax < 0.25 && value > 3));
+            }),
+          description: string().required('Description is required'),
+          categoryId: number().required(),
+          stateId: number().required(),
+        })
+        .required(),
+    ),
+  });
 
   const submitHandler = (data: ProductFormData) => {
     dispatch(postProduct(data));
