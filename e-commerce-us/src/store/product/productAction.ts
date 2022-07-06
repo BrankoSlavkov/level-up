@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchData } from '../../api/fetchDate';
 import { postData } from '../../api/postData';
 
-import { PRODUCTS_URL } from '../../api/urls';
+import { PRODUCTS_URL } from '../../constants/urls';
 import { ProductFormData } from './productTypes';
 
 export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {

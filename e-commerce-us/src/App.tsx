@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ProductDetails } from './components/productDetails/ProductDetails';
 import { Products } from './pages/Products';
 
-import { PRODUCTS_DETAILS_ROUTE, PRODUCTS_ROUTE } from './Routes';
+import { PRODUCTS_DETAILS_ROUTE, PRODUCTS_ROUTE } from './constants/routes';
 
 function App() {
   return (
