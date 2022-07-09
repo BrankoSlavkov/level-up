@@ -19,7 +19,6 @@ eslint update to
 
 ```json
 {
-  "root": true,
   "env": {
     "browser": true,
     "es2021": true
@@ -43,6 +42,7 @@ eslint update to
   "rules": {
     "quotes": ["error", "single"],
     "semi": 2,
+    "no-shadow": 1,
     "react-hooks/rules-of-hooks": 2,
     "react-hooks/exhaustive-deps": 1,
     "react/react-in-jsx-scope": 0,
