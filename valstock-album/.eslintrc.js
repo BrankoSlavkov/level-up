@@ -6,6 +6,11 @@ const WARNING = 1;
 const ERROR = 2;
 
 module.exports = {
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   env: {
     browser: true,
     es2021: true,
@@ -45,7 +50,7 @@ module.exports = {
     'react/prefer-read-only-props': ['error'],
     'react/self-closing-comp': ['error'],
     'react/jsx-boolean-value': ERROR,
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx'] }],
+    'react/jsx-filename-extension': [WARNING, { extensions: ['.tsx'] }],
     'react/jsx-key': ERROR,
     'react/jsx-no-duplicate-props': ERROR,
     'react/jsx-no-useless-fragment': ERROR,
