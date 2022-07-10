@@ -44,23 +44,36 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
     resolver: yupResolver(
       object()
         .shape({
-          title: string().required('Title is required').min(4, 'Title should contain 4 characters'),
-          picture: string().required('Provide url for the image').matches(IMAGE_URL_REGEX, 'Invalid image url'),
+          title: string()
+            .required('Title is required')
+            .min(4, 'Title should contain 4 characters'),
+          picture: string()
+            .required('Provide url for the image')
+            .matches(IMAGE_URL_REGEX, 'Invalid image url'),
           price: number()
             .required('Price is required')
             .min(4, 'Price must be greater than 3')
-            .test('Price must be greater than 6', 'price must be greater than 6', (value) => {
-              if (!value) {
-                return false;
-              }
+            .test(
+              'Price must be greater than 6',
+              'price must be greater than 6',
+              (value) => {
+                if (!value) {
+                  return false;
+                }
 
-              const state: State | undefined = states.find((state) => state.id === watch('stateId'));
-              if (!state) {
-                return false;
-              }
+                const state: State | undefined = states.find(
+                  (eachState) => eachState.id === watch('stateId'),
+                );
+                if (!state) {
+                  return false;
+                }
 
-              return Boolean((0.25 <= state.tax && value > 6) || (state.tax < 0.25 && value > 3));
-            }),
+                return Boolean(
+                  (0.25 <= state.tax && value > 6) ||
+                    (state.tax < 0.25 && value > 3),
+                );
+              },
+            ),
           description: string().required('Description is required'),
           categoryId: number(),
           stateId: number(),
@@ -81,10 +94,17 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
   const stateSelectOrLoading = isLoading ? (
     <Spinner size="sm" />
   ) : (
-    <StateSelect register={register('stateId', { valueAsNumber: true })} states={states} />
+    <StateSelect
+      register={register('stateId', { valueAsNumber: true })}
+      states={states}
+    />
   );
 
-  const stateSelectOrError = error ? <span className="error">{error}</span> : stateSelectOrLoading;
+  const stateSelectOrError = error ? (
+    <span className="error">{error}</span>
+  ) : (
+    stateSelectOrLoading
+  );
 
   if (error) {
     return <span className="error">{error}</span>;
@@ -93,28 +113,50 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
   return (
     <>
       <h2 className={styles.title}>Create Product</h2>
-      <form onSubmit={handleSubmit(submitHandler)} className={styles.product__form}>
+      <form
+        onSubmit={handleSubmit(submitHandler)}
+        className={styles.product__form}
+      >
         <div className={styles.select__container}>
           {stateSelectOrError}
-          <CategorySelect register={register('categoryId', { valueAsNumber: true })} />
+          <CategorySelect
+            register={register('categoryId', { valueAsNumber: true })}
+          />
         </div>
         <div className={styles.horizontal__group}>
           <input type="text" {...register('title')} placeholder="Title" />
-          <input type="number" {...register('price', { valueAsNumber: true })} placeholder="Price" min={0} />
-          {errors.title && <span className="error">{errors.title.message}</span>}
-          {errors.price && <span className="error">{errors.price.message}</span>}
+          <input
+            type="number"
+            {...register('price', { valueAsNumber: true })}
+            placeholder="Price"
+            min={0}
+          />
+          {errors.title && (
+            <span className="error">{errors.title.message}</span>
+          )}
+          {errors.price && (
+            <span className="error">{errors.price.message}</span>
+          )}
         </div>
         <div className={styles.form__group}>
           <input type="text" {...register('picture')} placeholder="Image url" />
-          {errors.picture && <span className="error">{errors.picture.message}</span>}
+          {errors.picture && (
+            <span className="error">{errors.picture.message}</span>
+          )}
         </div>
         <div className={styles.form__group}>
           <textarea {...register('description')} placeholder="Description" />
-          {errors.description && <span className="error">{errors.description.message}</span>}
+          {errors.description && (
+            <span className="error">{errors.description.message}</span>
+          )}
         </div>
 
         <div className={styles.controls}>
-          <button type="button" onClick={closeModalHandler} className={styles.cancel}>
+          <button
+            type="button"
+            onClick={closeModalHandler}
+            className={styles.cancel}
+          >
             Cancel
           </button>
           <button type="submit" className={styles.confirm}>
