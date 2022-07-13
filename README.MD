@@ -8,14 +8,12 @@ The information on how to start the application what technologies i am learning 
 
 More [eslint](https://github.com/jsx-eslint/eslint-plugin-react)
 
-Create file **.eslintrc.json** content:
 <br />
 
-`npm install eslint --save-dev`
+`npm install eslint eslint-plugin-react eslint-plugin-react-hooks --save-dev`
 `npm init @eslint/config`
-`npm install eslint-plugin-react-hooks --save-dev`
 
-eslint update to
+**.eslintrc.js** content:
 
 ```js
 /* eslint-disable no-undef */
@@ -26,11 +24,6 @@ const WARNING = 1;
 const ERROR = 2;
 
 module.exports = {
-  settings: {
-    react: {
-      version: 'detect',
-    },
-  },
   env: {
     browser: true,
     es2021: true,
@@ -50,7 +43,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   rules: {
     quotes: ['error', 'single'],
     semi: 2,
@@ -60,12 +53,16 @@ module.exports = {
     'react/react-in-jsx-scope': OFF,
     'react/boolean-prop-naming': [
       'error',
-      { rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+', validateNested: true },
+      {
+        rule: '^(is|has)[A-Z]([A-Za-z0-9]?)+',
+        validateNested: true,
+        propTypeNames: ['bool'],
+      },
     ],
+    'react/no-multi-comp': ERROR,
     'react/button-has-type': ['error'],
     'react/no-typos': ['error'],
-    'react/no-unused-prop-types': ['warn'],
-    'react/no-unused-class-component-methods': ['error'],
+    'react/no-unused-prop-types': ['error'],
     'react/no-unused-state': ['error'],
     'react/prefer-read-only-props': ['error'],
     'react/self-closing-comp': ['error'],
@@ -76,6 +73,16 @@ module.exports = {
     'react/jsx-no-useless-fragment': ERROR,
     'react/jsx-pascal-case': ERROR,
     'react/jsx-tag-spacing': ERROR,
+    'react/jsx-curly-brace-presence': [
+      'error',
+      { props: 'never', children: 'never' },
+    ],
+    'react/jsx-equals-spacing': [2, 'never'],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
 ```
