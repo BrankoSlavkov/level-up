@@ -11,7 +11,7 @@ More [eslint](https://github.com/jsx-eslint/eslint-plugin-react)
 <br />
 
 `npm install eslint eslint-plugin-react eslint-plugin-react-hooks --save-dev`
-`npm init @eslint/config`
+`npm init @eslint/config -y`
 
 **.eslintrc.js** content:
 
