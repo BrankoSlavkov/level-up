@@ -1,0 +1,24 @@
+{
+  "events": [
+    {
+      "id": "d5e5865b",
+      "name": "Tomorrow Land",
+      "date": "2022-07-22T06:42:30.549Z",
+      "description": "This is going to be amazing"
+    },
+    {
+      "id": "7b-4f",
+      "name": "Tomorrow Brand",
+      "date": "2022-07-22T06:43:26.179Z",
+      "description": "This is going to be super amazing"
+    }
+  ],
+  "users": [
+    {
+      "id": "1ed-861d-0",
+      "name": "Branko",
+      "last_name": "Slavkov",
+      "password": "123456"
+    }
+  ]
+}
