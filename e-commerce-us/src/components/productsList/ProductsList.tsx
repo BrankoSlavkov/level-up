@@ -16,8 +16,12 @@ export const ProductsList = memo(() => {
       {isLoading ? (
         <Spinner size="lg" />
       ) : (
-        products?.map((product) => <ProductItem key={product.id} product={product} />)
+        products?.map((product) => (
+          <ProductItem key={product.id} product={product} />
+        ))
       )}
     </div>
   );
 });
+
+ProductsList.displayName = 'ProductsList';
