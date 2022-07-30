@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import { events } from '../../api';
+import { EventsTable } from '../../components/eventsTable/EventsTable';
+
+import styles from './events.module.scss';
 
 export const Events = () => {
   const [temp, setTemp] = useState([]);
@@ -19,10 +22,8 @@ export const Events = () => {
   }, []);
 
   return (
-    <div>
-      {temp?.map((event: any) => (
-        <div key={event.id}>{event.name}</div>
-      ))}
+    <div className={styles._container}>
+      <EventsTable events={temp} />
     </div>
   );
 };
