@@ -8,12 +8,13 @@ import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
 
 import './App.scss';
+import { Navigation } from './components/navigation/Navigation';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/events">
+        <Route path="/events" element={<Navigation />}>
           <Route index element={<Events />} />
           <Route path="add" element={<AddEvent />} />
           <Route path="edit/:id" element={<EditEvent />} />
