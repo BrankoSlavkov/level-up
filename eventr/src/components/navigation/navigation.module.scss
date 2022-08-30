@@ -33,12 +33,12 @@
     &:link,
     &:visited {
       color: var(--red);
-      transition: all 200ms ease;
+      transition: all var(--default-transition);
     }
 
     &:hover,
     &:active {
-      color: var(--red-hover);
+      color: var(--light-red);
       text-decoration: underline;
     }
   }
@@ -48,7 +48,7 @@
     background-color: unset;
     border: none;
     font-family: inherit;
-    transition: color 200ms ease;
+    transition: color var(--default-transition);
     font-weight: 500;
     font-size: 1.4rem;
     margin-left: 1.2rem;

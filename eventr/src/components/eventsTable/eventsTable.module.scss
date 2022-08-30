@@ -8,6 +8,42 @@
   & td,
   & th {
     border: 1px solid var(--light-gray);
-    padding: 5px;
+    padding: 5px 7px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: var(--font-roboto);
+  font-size: 1.6rem;
+  color: var(--almost-black);
+
+  & button {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    transition: color var(--default-transition);
+
+    &:hover {
+      color: var(--red);
+    }
+  }
+
+  & a {
+    &:link,
+    &:visited {
+      text-decoration: none;
+      font-size: 1.6rem;
+      color: var(--almost-black);
+      transition: color var(--default-transition);
+    }
+
+    &:hover,
+    &:active {
+      color: var(--red);
+    }
   }
 }
