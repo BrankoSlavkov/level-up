@@ -1,7 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap');
 
 :root {
   --font-inter: 'Roboto', sans-serif;
+
+  /* COLORS */
+  --red: #ff6b6b;
+  --red-hover: #ffa8a8;
+  --gray: #868e96;
+  --light-gray: #ced4da;
+  --almost-black: #212529;
+
+  /* SHADOWS */
+  --shadow-bottom: rgba(27, 31, 35, 0.2) 0px 1px 0px,
+    rgba(255, 255, 255, 0.1) 0px 1px 0px inset;
 }
 
 *,
@@ -12,9 +23,16 @@
   margin: 0;
 }
 
-body {
+html {
   box-sizing: border-box;
   font-size: 62.5%;
+}
+
+body {
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  font-family: var(--font-inter);
 }
 
 button {

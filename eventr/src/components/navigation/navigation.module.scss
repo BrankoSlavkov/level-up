@@ -3,4 +3,57 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-top: 8rem;
+}
+
+._header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 3rem;
+  font-family: var(--font-inter);
+  font-size: 1.8rem;
+  font-weight: 200;
+  box-shadow: var(--shadow-bottom);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  & a {
+    text-decoration: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: uppercase;
+
+    &:link,
+    &:visited {
+      color: var(--red);
+      transition: all 200ms ease;
+    }
+
+    &:hover,
+    &:active {
+      color: var(--red-hover);
+      text-decoration: underline;
+    }
+  }
+
+  & button {
+    color: var(--almost-black);
+    background-color: unset;
+    border: none;
+    font-family: inherit;
+    transition: color 200ms ease;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-left: 1.2rem;
+
+    &:hover,
+    &:active {
+      color: var(--gray);
+    }
+  }
 }
