@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700&display=swap');
 
 :root {
-  --font-inter: 'Roboto', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
 
   /* COLORS */
   --red: #ff6b6b;
@@ -32,7 +32,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   min-height: 100vh;
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
 }
 
 button {

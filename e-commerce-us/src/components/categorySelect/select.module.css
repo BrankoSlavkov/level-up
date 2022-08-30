@@ -11,6 +11,6 @@
 .select option,
 .select {
   cursor: pointer;
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
   font-size: 15px;
 }

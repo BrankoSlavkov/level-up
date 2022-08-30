@@ -14,7 +14,7 @@
 .product__form input,
 .product__form textarea {
   padding: 10px 15px;
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
   font-size: 16px;
   border: 1px solid var(--light-gray);
   width: 100%;
@@ -39,7 +39,7 @@
   box-shadow: var(--shadow-light);
   border-radius: 6px;
   font-weight: 600;
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
   font-size: 16px;
   width: 100%;
   transition: all 0.2s;
@@ -76,7 +76,7 @@
 }
 
 .title {
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
   text-align: center;
   font-size: 24px;
 }

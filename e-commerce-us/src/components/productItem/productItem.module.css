@@ -2,7 +2,7 @@
   border: 1px solid var(--very-dark-gray);
   padding: 10px;
   font-size: 16px;
-  font-family: var(--font-inter);
+  font-family: var(--font-roboto);
   box-shadow: var(--shadow-light);
   cursor: pointer;
   color: var(--almost-black);

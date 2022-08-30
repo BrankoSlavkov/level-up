@@ -4,7 +4,7 @@ export const TheadRow = () => {
       <th>Name</th>
       <th>Date</th>
       <th>Description</th>
-      <th />
+      <th>Action</th>
     </tr>
   );
 };

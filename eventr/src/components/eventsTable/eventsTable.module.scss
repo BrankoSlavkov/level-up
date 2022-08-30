@@ -1,4 +1,13 @@
 .table {
-  height: -moz-fit-content;
   height: fit-content;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.6rem;
+  font-family: var(--font-roboto);
+
+  & td,
+  & th {
+    border: 1px solid var(--light-gray);
+    padding: 5px;
+  }
 }
