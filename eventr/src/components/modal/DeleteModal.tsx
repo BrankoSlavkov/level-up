@@ -1,14 +1,21 @@
 import { Modal } from '@mantine/core';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { selectIsModalVisible, toggleModal } from '../../store/ui/UiSlice';
+import {
+  selectIsModalVisible,
+  selectModalContent,
+  setModal,
+} from '../../store/modal/ModalSlice';
+
+import styles from './deleteModal.module.scss';
 
 export const DeleteModal = () => {
   const opened = useAppSelector(selectIsModalVisible);
+  const content = useAppSelector(selectModalContent);
   const dispatch = useAppDispatch();
 
   const toggle = () => {
-    dispatch(toggleModal());
+    dispatch(setModal());
   };
 
   return (
@@ -17,9 +24,11 @@ export const DeleteModal = () => {
       overlayBlur={3}
       opened={opened}
       onClose={toggle}
-      title="This is fullscreen modal!"
+      title="Delete"
     >
-      <div>delete</div>
+      <div className={styles.content__container}>
+        Are you sure you want to delete <strong>{content}</strong>?
+      </div>
     </Modal>
   );
 };

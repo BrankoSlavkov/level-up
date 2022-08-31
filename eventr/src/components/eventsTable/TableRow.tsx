@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
-import { toggleModal } from '../../store/ui/UiSlice';
+import { setModal } from '../../store/modal/ModalSlice';
 
 import styles from './eventsTable.module.scss';
 
@@ -15,10 +15,6 @@ export const TableRow: FC<TableRowProps> = ({
   console.log('eeel');
   const dispatch = useAppDispatch();
 
-  const showDeleteModal = () => {
-    dispatch(toggleModal());
-  };
-
   return (
     <tr>
       <td>{name}</td>
@@ -26,7 +22,7 @@ export const TableRow: FC<TableRowProps> = ({
       <td>{description}</td>
       <td className={styles.actions}>
         <Link to={`edit/${id}`}>Edit</Link>
-        <button type="button" onClick={showDeleteModal}>
+        <button type="button" onClick={() => dispatch(setModal(name))}>
           Delete
         </button>
       </td>
