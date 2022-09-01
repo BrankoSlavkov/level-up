@@ -1,29 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { events } from '../../api';
 import { EventsTable } from '../../components/eventsTable/EventsTable';
+import { fetchEvents } from '../../store/event/eventAction';
+import { getAllEvents } from '../../store/event/eventSelectors';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import styles from './events.module.scss';
 
 export const Events = () => {
-  const [temp, setTemp] = useState([]);
+  const dispatch = useAppDispatch();
+  const events = useAppSelector(getAllEvents);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const { statusText, data } = await events.get('/events');
-
-      if (!statusText.match(/ok/i)) {
-        return;
-      }
-      setTemp(data);
-    };
-
-    fetchEvents();
-  }, []);
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   return (
     <div className={styles._container}>
-      <EventsTable events={temp} />
+      <EventsTable events={events} />
     </div>
   );
 };

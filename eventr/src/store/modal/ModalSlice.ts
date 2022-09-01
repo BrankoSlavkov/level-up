@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Event } from '../event/eventSlice';
+
+import { deleteEvent } from '../event/eventSlice';
+import { Event } from '../event/eventTypes';
 
 type ModalSlice = {
   showDeleteModal: boolean;
   event: Event;
 };
 
+const emptyEvent = {} as Event;
+
 const initialState: ModalSlice = {
   showDeleteModal: false,
-  event: {} as Event,
+  event: emptyEvent,
 };
 
 export const modalSlice = createSlice({
@@ -17,8 +21,14 @@ export const modalSlice = createSlice({
   reducers: {
     setModal: (state, { payload }: PayloadAction<Event | undefined>) => {
       state.showDeleteModal = !state.showDeleteModal;
-      state.event = payload ?? ({} as Event);
+      state.event = payload ?? emptyEvent;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteEvent, (state) => {
+      state.event = emptyEvent;
+      state.showDeleteModal = false;
+    });
   },
 });
 

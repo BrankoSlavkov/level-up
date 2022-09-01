@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { TableRow } from './TableRow';
 import { TheadRow } from './TheadRow';
 
@@ -10,7 +8,8 @@ export type EventsTableProps = {
   events: any[];
 };
 
-export const EventsTable = memo<EventsTableProps>(({ events }) => {
+export const EventsTable: React.FC<EventsTableProps> = ({ events }) => {
+  console.log('eel');
   return (
     <>
       <table className={styles.table}>
@@ -26,6 +25,4 @@ export const EventsTable = memo<EventsTableProps>(({ events }) => {
       <DeleteModal />
     </>
   );
-});
-
-EventsTable.displayName = 'EventsTable';
+};

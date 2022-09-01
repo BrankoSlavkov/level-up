@@ -15,7 +15,7 @@ export const DeleteModal = () => {
   const { name, id } = useAppSelector(selectModalData);
   const dispatch = useAppDispatch();
 
-  const onToggle = () => {
+  const onClose = () => {
     dispatch(setModal());
   };
 
@@ -28,7 +28,7 @@ export const DeleteModal = () => {
       overlayColor="var(--almost-black)"
       overlayBlur={3}
       opened={opened}
-      onClose={onToggle}
+      onClose={onClose}
       title="Delete"
     >
       <div className={styles.content__container}>
@@ -39,7 +39,7 @@ export const DeleteModal = () => {
         <Button variant="light" color="green" onClick={onDeleteEvent}>
           Yes
         </Button>
-        <Button variant="light" color="red">
+        <Button variant="light" color="red" onClick={onClose}>
           No
         </Button>
       </Group>
