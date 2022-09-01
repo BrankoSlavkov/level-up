@@ -1,32 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '..';
+import { Event } from '../event/eventSlice';
 
 type ModalSlice = {
   showDeleteModal: boolean;
-  content: string;
+  event: Event;
 };
 
 const initialState: ModalSlice = {
   showDeleteModal: false,
-  content: '',
+  event: {} as Event,
 };
 
 export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    setModal: (state, { payload }: PayloadAction<string | undefined>) => {
+    setModal: (state, { payload }: PayloadAction<Event | undefined>) => {
       state.showDeleteModal = !state.showDeleteModal;
-      state.content = payload ?? '';
+      state.event = payload ?? ({} as Event);
     },
   },
 });
 
 export const { setModal } = modalSlice.actions;
-
-export const selectIsModalVisible = (state: RootState) =>
-  state.modal.showDeleteModal;
-
-export const selectModalContent = (state: RootState) => state.modal.content;
 
 export default modalSlice.reducer;

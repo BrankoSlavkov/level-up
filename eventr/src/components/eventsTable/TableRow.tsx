@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
-import { setModal } from '../../store/modal/ModalSlice';
+import { setModal } from '../../store/modal/modalSlice';
 
 import styles from './eventsTable.module.scss';
 
@@ -9,10 +9,8 @@ export type TableRowProps = {
   event: any;
 };
 
-export const TableRow: FC<TableRowProps> = ({
-  event: { name, date, description, id },
-}) => {
-  console.log('eeel');
+export const TableRow: FC<TableRowProps> = ({ event }) => {
+  const { name, date, description, id } = event;
   const dispatch = useAppDispatch();
 
   return (
@@ -22,7 +20,7 @@ export const TableRow: FC<TableRowProps> = ({
       <td>{description}</td>
       <td className={styles.actions}>
         <Link to={`edit/${id}`}>Edit</Link>
-        <button type="button" onClick={() => dispatch(setModal(name))}>
+        <button type="button" onClick={() => dispatch(setModal(event))}>
           Delete
         </button>
       </td>

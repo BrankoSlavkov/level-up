@@ -1,21 +1,26 @@
-import { Modal } from '@mantine/core';
+import { Button, Group, Modal } from '@mantine/core';
 
+import { deleteEvent } from '../../store/event/eventSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   selectIsModalVisible,
-  selectModalContent,
-  setModal,
-} from '../../store/modal/ModalSlice';
+  selectModalData,
+} from '../../store/modal/modalSelectors';
+import { setModal } from '../../store/modal/modalSlice';
 
 import styles from './deleteModal.module.scss';
 
 export const DeleteModal = () => {
   const opened = useAppSelector(selectIsModalVisible);
-  const content = useAppSelector(selectModalContent);
+  const { name, id } = useAppSelector(selectModalData);
   const dispatch = useAppDispatch();
 
-  const toggle = () => {
+  const onToggle = () => {
     dispatch(setModal());
+  };
+
+  const onDeleteEvent = () => {
+    dispatch(deleteEvent(id));
   };
 
   return (
@@ -23,12 +28,21 @@ export const DeleteModal = () => {
       overlayColor="var(--almost-black)"
       overlayBlur={3}
       opened={opened}
-      onClose={toggle}
+      onClose={onToggle}
       title="Delete"
     >
       <div className={styles.content__container}>
-        Are you sure you want to delete <strong>{content}</strong>?
+        Are you sure you want to delete <strong>{name}</strong>?
       </div>
+
+      <Group position="right" mt="lg">
+        <Button variant="light" color="green" onClick={onDeleteEvent}>
+          Yes
+        </Button>
+        <Button variant="light" color="red">
+          No
+        </Button>
+      </Group>
     </Modal>
   );
 };

@@ -11,8 +11,6 @@ export type EventsTableProps = {
 };
 
 export const EventsTable = memo<EventsTableProps>(({ events }) => {
-  console.log('EventsTable');
-
   return (
     <>
       <table className={styles.table}>
