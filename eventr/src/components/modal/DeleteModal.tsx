@@ -1,6 +1,6 @@
 import { Button, Group, Modal } from '@mantine/core';
+import { deleteEvent } from '../../store/event/eventAction';
 
-import { deleteEvent } from '../../store/event/eventSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   selectIsModalVisible,

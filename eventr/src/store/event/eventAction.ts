@@ -14,3 +14,16 @@ export const fetchEvents = createAsyncThunk<Event[], void>(
     return data;
   },
 );
+
+export const deleteEvent = createAsyncThunk<string, string>(
+  'event/deleteEvent',
+  async (id, { rejectWithValue }) => {
+    const { data, statusText } = await events.delete(`/events/${id}`);
+
+    if (!statusText.match(/ok/i)) {
+      return rejectWithValue(data);
+    }
+
+    return id;
+  },
+);

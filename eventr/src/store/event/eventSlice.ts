@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchEvents } from './eventAction';
+import { fetchEvents, deleteEvent } from './eventAction';
 
 import { Event } from './eventTypes';
 
@@ -18,9 +18,9 @@ export const eventSlice = createSlice({
     setEvents: (state, { payload }: PayloadAction<Event[]>) => {
       state.events = payload;
     },
-    deleteEvent: (state, { payload }: PayloadAction<string>) => {
-      state.events = state.events.filter((event) => event.id !== payload);
-    },
+    // deleteEvent: (state, { payload }: PayloadAction<string>) => {
+    //   state.events = state.events.filter((event) => event.id !== payload);
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -32,11 +32,17 @@ export const eventSlice = createSlice({
           console.log('here');
           state.events = payload;
         },
+      )
+      // .addCase(fetchEvents.rejected, (state, action) => {});
+      .addCase(
+        deleteEvent.fulfilled,
+        (state, { payload }: PayloadAction<string>) => {
+          state.events = state.events.filter((event) => event.id !== payload);
+        },
       );
-    // .addCase(fetchEvents.rejected, (state, action) => {});
   },
 });
 
-export const { deleteEvent, setEvents } = eventSlice.actions;
+export const { setEvents } = eventSlice.actions;
 
 export default eventSlice.reducer;
