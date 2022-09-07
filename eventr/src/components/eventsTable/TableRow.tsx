@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { Event } from '../../store/event/eventTypes';
 import { useAppDispatch } from '../../store/hooks';
 import { setModal } from '../../store/modal/modalSlice';
 
 import styles from './eventsTable.module.scss';
 
 export type TableRowProps = {
-  event: any;
+  event: Event;
 };
 
 export const TableRow: FC<TableRowProps> = ({ event }) => {

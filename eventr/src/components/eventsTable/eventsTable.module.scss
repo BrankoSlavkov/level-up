@@ -30,9 +30,11 @@
     background-color: transparent;
     font-family: inherit;
     font-size: inherit;
+    color: var(--light-red);
     transition: color var(--default-transition);
 
     &:hover {
+      text-decoration: underline;
       color: var(--red);
     }
   }

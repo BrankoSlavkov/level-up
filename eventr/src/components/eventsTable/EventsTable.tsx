@@ -3,9 +3,10 @@ import { TheadRow } from './TheadRow';
 
 import styles from './eventsTable.module.scss';
 import { DeleteModal } from '../modal/DeleteModal';
+import { Event } from '../../store/event/eventTypes';
 
 export type EventsTableProps = {
-  events: any[];
+  events: Event[];
 };
 
 export const EventsTable: React.FC<EventsTableProps> = ({ events }) => {
@@ -17,7 +18,7 @@ export const EventsTable: React.FC<EventsTableProps> = ({ events }) => {
           <TheadRow />
         </thead>
         <tbody>
-          {events?.map((event: any) => (
+          {events?.map((event) => (
             <TableRow key={event.id} event={event} />
           ))}
         </tbody>
