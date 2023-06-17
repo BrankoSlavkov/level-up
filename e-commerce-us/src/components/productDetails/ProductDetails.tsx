@@ -12,7 +12,7 @@ export type ProductDetailsParams = {
 export const ProductDetails = () => {
   const { id } = useParams<ProductDetailsParams>() as ProductDetailsParams;
   const { products } = useAppSelector(getProducts);
-  const product = products.find((product) => product.id === Number.parseInt(id));
+  const product = products.find((p) => p.id === Number.parseInt(id));
 
   if (!product) {
     return null;

@@ -11,7 +11,10 @@ type ModalProps = {
   closeHandler: () => void;
 };
 
-export const Modal: FC<PropsWithChildren<ModalProps>> = ({ children, closeHandler }) => {
+export const Modal: FC<PropsWithChildren<ModalProps>> = ({
+  children,
+  closeHandler,
+}) => {
   if (!portalRoot) {
     return null;
   }
@@ -22,7 +25,7 @@ export const Modal: FC<PropsWithChildren<ModalProps>> = ({ children, closeHandle
       <div className={styles.modal__wrapper}>
         <div className={styles.modal}>
           <div className={styles.close}>
-            <button onClick={closeHandler}>
+            <button onClick={closeHandler} type="button">
               <Close className={`${styles['h-2']} ${styles['w-2']}`} />
             </button>
           </div>

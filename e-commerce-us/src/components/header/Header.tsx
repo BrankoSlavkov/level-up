@@ -16,7 +16,11 @@ export const Header: FC<HeaderProps> = ({ showModalHandler }) => {
         <SelectSort />
       </div>
       <div className={styles.button__container}>
-        <button className={styles['btn__product--add']} onClick={showModalHandler}>
+        <button
+          className={styles['btn__product--add']}
+          onClick={showModalHandler}
+          type="button"
+        >
           <Plus />
           <span>Add Product</span>
         </button>
