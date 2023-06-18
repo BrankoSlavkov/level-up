@@ -9,7 +9,7 @@
 
 .products__container {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: minmax(250px, 1fr) 4fr;
   height: 100%;
   width: 100%;
   border: 1px solid var(--very-dark-gray);
@@ -18,4 +18,5 @@
 
 .product__details {
   padding: 40px;
+  overflow: hidden auto;
 }
