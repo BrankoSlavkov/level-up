@@ -25,8 +25,8 @@ const defaultValues: ProductFormData = {
   picture: '',
   description: '',
   price: 0,
-  categoryId: 1,
-  stateId: 1,
+  categoryId: '',
+  stateId: '',
 };
 
 const schema = object()
@@ -34,9 +34,8 @@ const schema = object()
     title: string()
       .required('Title is required')
       .min(4, 'Title should contain 4 characters'),
-    picture: string()
-      .required('Provide url for the image')
-      .matches(IMAGE_URL_REGEX, 'Invalid image url'),
+    picture: string().required('Provide url for the image').url(),
+    // .matches(IMAGE_URL_REGEX, 'Invalid image url'),
     price: number()
       .required('Price is required')
       .min(4, 'Price must be greater than 3'),
@@ -61,8 +60,8 @@ const schema = object()
     //   },
     // ),
     description: string().required('Description is required'),
-    categoryId: number(),
-    stateId: number(),
+    categoryId: string(),
+    stateId: string(),
   })
   .required();
 
@@ -79,11 +78,14 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
     resolver: yupResolver(schema),
   });
 
+  console.info(errors);
+
   useEffect(() => {
     dispatch(fetchStates());
   }, [dispatch]);
 
   const submitHandler = (data: ProductFormData) => {
+    console.log('first');
     dispatch(postProduct(data));
     closeModalHandler();
   };
@@ -91,10 +93,7 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
   const stateSelectOrLoading = isLoading ? (
     <Spinner size="sm" />
   ) : (
-    <StateSelect
-      register={register('stateId', { valueAsNumber: true })}
-      states={states}
-    />
+    <StateSelect register={register('stateId')} states={states} />
   );
 
   const stateSelectOrError = error ? (
@@ -116,9 +115,7 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
       >
         <div className={styles.select__container}>
           {stateSelectOrError}
-          <CategorySelect
-            register={register('categoryId', { valueAsNumber: true })}
-          />
+          <CategorySelect register={register('categoryId')} />
         </div>
         <div className={styles.horizontal__group}>
           <input type="text" {...register('title')} placeholder="Title" />

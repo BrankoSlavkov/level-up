@@ -2,8 +2,8 @@ export type Product = {
   id: number;
   title: string;
   price: number;
-  stateId: number;
-  categoryId: number;
+  stateId: string;
+  categoryId: string;
   stock: boolean;
   picture: string;
   description: string;

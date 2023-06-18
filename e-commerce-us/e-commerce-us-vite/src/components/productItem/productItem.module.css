@@ -6,6 +6,16 @@
   box-shadow: var(--shadow-light);
   cursor: pointer;
   color: var(--almost-black);
+  text-decoration: none;
+  transition: background-color 200ms ease;
+
+  &:hover {
+    background-color: var(--light-gray);
+  }
+
+  &.active {
+    background-color: var(--light-gray-10);
+  }
 }
 
 .product__details {

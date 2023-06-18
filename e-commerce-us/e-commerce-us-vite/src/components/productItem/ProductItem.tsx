@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-import { Product } from '../../store/product/productTypes';
+import { Product } from 'store/product/productTypes';
 
 import styles from './productItem.module.css';
 
@@ -10,22 +10,23 @@ type ProductItemProps = {
 };
 
 export const ProductItem: FC<ProductItemProps> = ({ product }) => {
-  const navigate = useNavigate();
-
-  const productAvailable = product.stock ? (
-    <span className={styles.available}>available</span>
-  ) : (
-    <span className={styles.unavailable}>unavailable</span>
-  );
+  const availableClass = product.stock ? styles.available : styles.unavailable;
+  const availableText = product.stock ? 'available' : 'unavailable';
 
   return (
-    <div className={styles.product__card} onClick={() => navigate(`/products/${product.id}`)}>
+    <NavLink
+      className={({ isActive }) =>
+        isActive
+          ? `${styles.product__card} ${styles.active}`
+          : styles.product__card
+      }
+      to={product.id.toString()}
+    >
       <div className={styles.product__details}>
-        <span>{product.id}</span>
         <span>{product.title}</span>
-        {productAvailable}
+        <span className={availableClass}>{availableText}</span>
       </div>
       <span className={styles.product__price}>${product.price}</span>
-    </div>
+    </NavLink>
   );
 };
