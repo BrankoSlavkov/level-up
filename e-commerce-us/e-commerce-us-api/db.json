@@ -1,0 +1,39 @@
+{
+  "products": [],
+  "states": [
+    {
+      "id": "LfSMmgzf__wTy",
+      "name": "Ohio",
+      "tax": 0.3
+    },
+    {
+      "id": "OPll-Bt30I03G",
+      "name": "Utah",
+      "tax": 0.15
+    },
+    {
+      "id": "1u4JNjlJf9APT",
+      "name": "Texas",
+      "tax": 0.2
+    },
+    {
+      "id": "7rYxpS1YeHx2V",
+      "name": "Michigan",
+      "tax": 0.5
+    }
+  ],
+  "categories": [
+    {
+      "id": "iwg36e9Vrh6j2",
+      "name": "Furniture"
+    },
+    {
+      "id": "Vq0DHthF5V1EI",
+      "name": "Lightning"
+    },
+    {
+      "id": "UnlyUxr9EO1gD",
+      "name": "Other"
+    }
+  ]
+}
