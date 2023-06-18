@@ -9,10 +9,11 @@
   --dark-gray: #495057;
   --almost-black: rgb(17 24 39);
   --light-gray: #ced4da;
+  --light-gray-transparent-6: rgba(211, 211, 211, 0.6);
   --light-gray-10: #b1bbc4;
   --white: #fff;
   --red: #fa5252;
-  --green: #51cf66;
+  --green: #00ff2a;
 
   /* SHADOWS */
   --shadow-light: 0 1rem 3rem rgba(0, 0, 0, 0.06);

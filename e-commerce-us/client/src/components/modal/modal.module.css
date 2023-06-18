@@ -42,20 +42,28 @@
   width: 20px;
 }
 
-.close svg {
-  cursor: pointer;
-  color: var(--almost-black);
-}
-
 .close {
   text-align: right;
-}
 
-.close button {
-  background-color: transparent;
-  border: none;
-}
+  & svg {
+    cursor: pointer;
+    color: var(--almost-black);
+  }
 
-.close button:hover svg {
-  color: var(--dark-gray);
+  & button {
+    background-color: transparent;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 300ms ease-out;
+    display: flex;
+    margin-left: auto;
+    padding: 2px;
+
+    &:hover {
+      background-color: var(--light-gray-transparent-6);
+      & svg {
+        color: var(--dark-gray);
+      }
+    }
+  }
 }

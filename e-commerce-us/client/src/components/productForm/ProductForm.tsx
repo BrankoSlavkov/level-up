@@ -10,7 +10,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { fetchStates } from '../../store/state/stateAction';
 
 import { StateSelect } from '../stateSelect/StateSelect';
-import { IMAGE_URL_REGEX } from '../../helpers/regexConstants';
 import { CategorySelect } from '../categorySelect/CategorySelect';
 import { Spinner } from '../spinner/Spinner';
 
@@ -20,7 +19,9 @@ type ProductFormProps = {
   closeModalHandler: () => void;
 };
 
-const defaultValues: ProductFormData = {
+type WithoutStock = Omit<ProductFormData, 'stock'>;
+
+const defaultValues: WithoutStock = {
   title: '',
   picture: '',
   description: '',
@@ -73,20 +74,22 @@ export const ProductForm: FC<ProductFormProps> = ({ closeModalHandler }) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ProductFormData>({
+  } = useForm<WithoutStock>({
     defaultValues,
     resolver: yupResolver(schema),
   });
-
-  console.info(errors);
 
   useEffect(() => {
     dispatch(fetchStates());
   }, [dispatch]);
 
-  const submitHandler = (data: ProductFormData) => {
-    console.log('first');
-    dispatch(postProduct(data));
+  const submitHandler = (data: WithoutStock) => {
+    dispatch(
+      postProduct({
+        ...data,
+        stock: Math.random() < 0.5,
+      }),
+    );
     closeModalHandler();
   };
 
